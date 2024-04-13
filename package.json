@@ -1,0 +1,23 @@
+{
+  "name": "chorale",
+  "version": "0.0.1",
+  "description": "Site de la chorale",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RipocheGuillaume/amicado.git"
+  },
+  "author": "guillaume",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RipocheGuillaume/amicado/issues"
+  },
+  "homepage": "https://github.com/RipocheGuillaume/amicado#readme",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2"
+  }
+}

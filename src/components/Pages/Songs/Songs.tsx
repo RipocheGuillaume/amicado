@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { Box } from '@mui/material';
 import useSWR from 'swr';
 import MenuSongs from './elements/MenuSongs';
 import MusicPlayerSlider from './elements/MusicPlayerSlider';
-import { Box } from '@mui/material';
 
 interface SongType {
   id: number;
@@ -76,7 +76,10 @@ function Songs() {
   const voiceForSelectedSong: VoiceType[] = Array.isArray(voiceData)
     ? voiceData
     : [];
-  console.log(voiceData);
+
+  const selectedSong = songsForSelectedYear.find(
+    (s) => s.id === responseChoiceSong
+  );
 
   return (
     <>
@@ -108,22 +111,26 @@ function Songs() {
         (isVoiceLoading ? (
           <p>Chargement des voix...</p>
         ) : (
-          voiceForSelectedSong.map((voice) => {
-            const song = songsForSelectedYear.find(
-              (s) => s.id === responseChoiceSong
-            );
-            return (
-              song && (
-                <div key={voice.id}>
-                  <Box sx={{ width: 150, height: 150 }}>
-                    <img src={song.image} alt={song.title} />
-                  </Box>
+          <>
+            {/* Affiche l'image et le titre du `song` sélectionné en dehors de la boucle */}
+            {selectedSong && (
+              <Box sx={{ width: 150, height: 150 }}>
+                <p>{selectedSong.title}</p>
+                <img
+                  src={selectedSong.image}
+                  alt={selectedSong.title}
+                  style={{ width: '100%', height: '100%' }}
+                />
+              </Box>
+            )}
 
-                  <MusicPlayerSlider voice={voice} song={song} />
-                </div>
-              )
-            );
-          })
+            {/* Affiche `MusicPlayerSlider` pour chaque `voice` */}
+            {voiceForSelectedSong.map((voice) => (
+              <div key={voice.id}>
+                <MusicPlayerSlider voice={voice} />
+              </div>
+            ))}
+          </>
         ))}
     </>
   );

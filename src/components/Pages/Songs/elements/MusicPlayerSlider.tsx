@@ -4,14 +4,10 @@ import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 
 interface MusicPlayerSliderProps {
-  voice: { voice: string; link: string };
-  song: { title: string; author: string; image: string };
+  voice: { id: number; voice: string; link: string };
 }
 
-export default function MusicPlayerSlider({
-  voice,
-  song,
-}: MusicPlayerSliderProps) {
+export default function MusicPlayerSlider({ voice }: MusicPlayerSliderProps) {
   return (
     <AudioPlayer
       // style={{ width: "300px" }}
@@ -20,10 +16,8 @@ export default function MusicPlayerSlider({
       // layout="horizontal"
       src={voice.link}
       showJumpControls={false}
-      header={`${song.title} par ${song.author} pour ${voice.voice}`}
+      header={`${voice.voice}`}
       footer=""
-
-      // other props here
     />
   );
 }

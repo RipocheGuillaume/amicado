@@ -1,0 +1,106 @@
+{
+  "song": {
+    "2020-2021": [
+      {
+        "title": "Chanson 1 - 2020",
+        "author": "Auteur 1",
+        "link": "https://example.com/song1-2020"
+      },
+      {
+        "title": "Chanson 2 - 2020",
+        "author": "Auteur 2",
+        "link": "https://example.com/song2-2020"
+      },
+      {
+        "title": "Chanson 3 - 2020",
+        "author": "Auteur 3",
+        "link": "https://example.com/song3-2020"
+      }
+    ],
+    "2021-2022": [
+      {
+        "title": "Chanson 1 - 2021",
+        "author": "Auteur 1",
+        "link": "https://example.com/song1-2021"
+      },
+      {
+        "title": "Chanson 2 - 2021",
+        "author": "Auteur 2",
+        "link": "https://example.com/song2-2021"
+      },
+      {
+        "title": "Chanson 3 - 2021",
+        "author": "Auteur 3",
+        "link": "https://example.com/song3-2021"
+      }
+    ],
+    "2022-2023": [
+      {
+        "title": "Chanson 1 - 2022",
+        "author": "Auteur 1",
+        "link": "https://example.com/song1-2022"
+      },
+      {
+        "title": "Chanson 2 - 2022",
+        "author": "Auteur 2",
+        "link": "https://example.com/song2-2022"
+      },
+      {
+        "title": "Chanson 3 - 2022",
+        "author": "Auteur 3",
+        "link": "https://example.com/song3-2022"
+      }
+    ],
+    "2023-2024": [
+      {
+        "title": "Chanson 1 - 2023",
+        "author": "Auteur 1",
+        "link": "https://example.com/song1-2023"
+      },
+      {
+        "title": "Chanson 2 - 2023",
+        "author": "Auteur 2",
+        "link": "https://example.com/song2-2023"
+      },
+      {
+        "title": "Chanson 3 - 2023",
+        "author": "Auteur 3",
+        "link": "https://example.com/song3-2023"
+      }
+    ],
+    "2025-2026": [
+      {
+        "title": "Chanson 1 - 2025",
+        "author": "Auteur 1",
+        "link": "https://example.com/song1-2025"
+      },
+      {
+        "title": "Chanson 2 - 2025",
+        "author": "Auteur 2",
+        "link": "https://example.com/song2-2025"
+      },
+      {
+        "title": "Chanson 3 - 2025",
+        "author": "Auteur 3",
+        "link": "https://example.com/song3-2025"
+      }
+    ]
+  },
+  "picture": [
+    {
+      "title": "Image 1",
+      "description": "Description de l'image 1",
+      "url": "https://example.com/image1"
+    },
+    {
+      "title": "Image 2",
+      "description": "Description de l'image 2",
+      "url": "https://example.com/image2"
+    },
+    {
+      "title": "Image 3",
+      "description": "Description de l'image 3",
+      "url": "https://example.com/image3"
+    }
+  ]
+}

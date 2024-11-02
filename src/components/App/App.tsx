@@ -1,27 +1,37 @@
-import logo from '../../assets/logo.svg';
-
+import React from 'react';
 import './App.scss';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { DataProvider } from '../../dataContext/dataContext';
+import Header from '../elements/Header';
+import Home from '../elements/Home';
+import Songs from '../Pages/Songs/Songs';
+import Pictures from '../elements/Pictures';
+
+const queryClient = new QueryClient();
 
 function App() {
+  const [menuChoice, setMenuChoice] = React.useState('pageHome');
+  const renderContent = () => {
+    if (menuChoice === 'pageHome') {
+      return <Home />;
+    }
+    if (menuChoice === 'pageSongs') {
+      return <Songs />;
+    }
+    if (menuChoice === 'pagePictures') {
+      return <Pictures />;
+    }
+    return 'Erreur';
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-
-        <p>
-          Edit <code>src/components/App/App.tsx</code> and save to reload.
-        </p>
-
-        <a
-          className="App-link"
-          href="https://react.dev/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <DataProvider>
+        <div className="App">
+          <Header SetMenuChoice={setMenuChoice} />
+          {renderContent()}
+        </div>
+      </DataProvider>
+    </QueryClientProvider>
   );
 }
 

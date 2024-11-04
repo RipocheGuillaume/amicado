@@ -29,14 +29,8 @@ export const SongList = () => (
       <TextField source="title" />
       <TextField source="author" />
       <TextField source="image" />
-      <ReferenceField source="years_id" reference="years" label="Année">
-        <TextField source="year" />
-      </ReferenceField>
-      <ArrayField source="voice" label="Voix associées">
-        <SingleFieldList>
-          <ChipField source="voice" />
-        </SingleFieldList>
-      </ArrayField>
+      <TextField source="year" />
+
       <EditButton />
       <DeleteButton />
     </Datagrid>

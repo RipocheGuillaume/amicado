@@ -7,7 +7,6 @@ import {
   EditButton,
   DeleteButton,
   SingleFieldList,
-  ReferenceManyField,
   ChipField,
   ArrayField,
 } from "react-admin";

@@ -12,6 +12,11 @@ import { YearsEdit } from "./components/List/Years/YearsEdit";
 import { VoiceList } from "./components/List/Voice/VoiceList";
 import { VoiceCreate } from "./components/List/Voice/VoiceCreate";
 import { VoiceEdit } from "./components/List/Voice/VoiceEdit";
+import { EventsList } from "./components/Events/EventsList";
+import { EventsCreate } from "./components/Events/EventsCreate";
+import { EventsEdit } from "./components/Events/EventsEdit";
+import { PicturesList } from "./components/Pictures/PicturesList";
+import { PicturesCreate } from "./components/Pictures/PicturesCreate";
 
 export const App = () => (
   <Admin
@@ -32,6 +37,14 @@ export const App = () => (
       create={VoiceCreate}
       edit={VoiceEdit}
     />
+    <Resource
+      name="events"
+      list={EventsList}
+      create={EventsCreate}
+      edit={EventsEdit}
+    />
+
+    <Resource name="pictures" list={PicturesList} create={PicturesCreate} />
 
     <Resource name="users" list={UsersList} />
   </Admin>

@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { Box } from '@mui/material';
-import useSWR from 'swr';
-import MenuSongs from './elements/MenuSongs';
-import MusicPlayerSlider from './elements/MusicPlayerSlider';
+import React, { useEffect, useState } from "react";
+import { Box } from "@mui/material";
+import useSWR from "swr";
+import MenuSongs from "./elements/MenuSongs";
+import MusicPlayerSlider from "./elements/MusicPlayerSlider";
 
 interface SongType {
   id: number;
   title: string;
   author: string;
   image: string;
+  years_id: number;
 }
 
 interface VoiceType {
@@ -33,7 +34,7 @@ function Songs() {
     data: yearsData,
     isLoading: isYearsLoading,
     error: yearsError,
-  } = useSWR('http://localhost:3000/years', fetcher);
+  } = useSWR("http://localhost:3000/years", fetcher);
 
   const {
     data: songsData,
@@ -41,7 +42,7 @@ function Songs() {
     error: songsError,
   } = useSWR<SongType[]>(
     responseChoiceYear !== -1
-      ? `http://localhost:3000/song/${responseChoiceYear}`
+      ? `http://localhost:3000/song/years/${responseChoiceYear}`
       : null,
     fetcher
   );
@@ -52,7 +53,7 @@ function Songs() {
     error: voiceError,
   } = useSWR<VoiceType[]>(
     responseChoiceSong !== -1
-      ? `http://localhost:3000/voice/${responseChoiceSong}`
+      ? `http://localhost:3000/voice/song/${responseChoiceSong}`
       : null,
     fetcher
   );
@@ -80,7 +81,7 @@ function Songs() {
   const selectedSong = songsForSelectedYear.find(
     (s) => s.id === responseChoiceSong
   );
-
+  console.log(selectedSong);
   return (
     <>
       {isYearsLoading ? (
@@ -114,12 +115,28 @@ function Songs() {
           <>
             {/* Affiche l'image et le titre du `song` sélectionné en dehors de la boucle */}
             {selectedSong && (
-              <Box sx={{ width: 150, height: 150 }}>
-                <p>{selectedSong.title}</p>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  p: 3,
+                }}
+              >
+                <Box
+                  sx={{
+                    p: 5,
+                    fontSize: 20,
+                    fontWeight: "bold",
+                  }}
+                >
+                  <Box>{selectedSong.title}</Box>
+                  <Box>{selectedSong.author}</Box>
+                </Box>
                 <img
                   src={selectedSong.image}
                   alt={selectedSong.title}
-                  style={{ width: '100%', height: '100%' }}
+                  style={{ height: "100%" }}
                 />
               </Box>
             )}

@@ -1,0 +1,12 @@
+.homePage {
+  height: '90vh';
+  display: 'flex';
+  flex-direction: 'column';
+}
+
+.image {
+  background-image: url('choraleBanniere.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}

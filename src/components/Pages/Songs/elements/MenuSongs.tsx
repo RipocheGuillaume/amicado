@@ -1,5 +1,6 @@
-import { Box, Button } from '@mui/material';
-import React, { useEffect } from 'react';
+import { Box, Button } from "@mui/material";
+import { blue } from "@mui/material/colors";
+import React, { useEffect } from "react";
 
 interface MenuSongProps {
   arrayData: { id: number; display: string }[]; // Mise à jour de `id` en `string` pour correspondre aux données
@@ -26,27 +27,34 @@ function MenuSongs({
   };
 
   return (
-    <div className="Home">
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          textAlign: 'center',
-        }}
-      >
-        {arrayData.map((data) => (
-          <Button
-            key={data.id} // Utilisation de `data.id` pour la clé unique
-            variant={choice === data.id ? 'contained' : 'text'}
-            sx={{ minWidth: 100 }}
-            onClick={() => handleClick(data)}
-          >
-            {data.display} {/* Affiche `year` dans chaque bouton */}
-          </Button>
-        ))}
-      </Box>
-    </div>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center",
+        p: 1,
+      }}
+    >
+      {arrayData.map((data) => (
+        <Button
+          key={data.id} // Utilisation de `data.id` pour la clé unique
+          variant={choice === data.id ? "contained" : "text"}
+          sx={{
+            minWidth: 100,
+            bgcolor: "blue",
+            color: "white",
+            borderRadius: 10,
+
+            m: 1,
+            fontWeight: "bold",
+          }}
+          onClick={() => handleClick(data)}
+        >
+          {data.display} {/* Affiche `year` dans chaque bouton */}
+        </Button>
+      ))}
+    </Box>
   );
 }
 

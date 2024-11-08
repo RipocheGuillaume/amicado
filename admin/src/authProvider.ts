@@ -1,27 +1,34 @@
 import { AuthProvider, HttpError } from "react-admin";
-import data from "./users.json";
 
 /**
  * This authProvider is only for test purposes. Don't use it in production.
  */
 export const authProvider: AuthProvider = {
-  login: ({ username, password }) => {
-    const user = data.users.find(
-      (u) => u.username === username && u.password === password,
-    );
+  login: async ({ username, password }) => {
+    try {
+      const response = await fetch("http://localhost:3000/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+      });
 
-    if (user) {
-      // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
-      let { password, ...userToPersist } = user;
-      localStorage.setItem("user", JSON.stringify(userToPersist));
+      if (!response.ok) {
+        throw new HttpError("Unauthorized", 401, {
+          message: "Invalid username or password",
+        });
+      }
+
+      const user = await response.json();
+      // Stocker les informations utilisateur sans le mot de passe
+      localStorage.setItem("user", JSON.stringify(user));
+
       return Promise.resolve();
+    } catch (error) {
+      console.error("Erreur lors de la connexion", error);
+      return Promise.reject(new HttpError("Erreur serveur", 500));
     }
-
-    return Promise.reject(
-      new HttpError("Unauthorized", 401, {
-        message: "Invalid username or password",
-      }),
-    );
   },
   logout: () => {
     localStorage.removeItem("user");

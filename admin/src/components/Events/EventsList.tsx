@@ -14,18 +14,15 @@ const ListActions = () => (
   </TopToolbar>
 );
 
-export const SongList = () => (
+export const EventsList = () => (
   <List
-    resource="song"
-    sort={{ field: "title", order: "ASC" }}
+    resource="events"
+    sort={{ field: "event", order: "ASC" }}
     actions={<ListActions />}
   >
     <Datagrid>
       <TextField source="id" />
-      <TextField source="title" />
-      <TextField source="author" />
-      <TextField source="image" />
-      <TextField source="year" />
+      <TextField source="event" />
 
       <EditButton />
       <DeleteButton />

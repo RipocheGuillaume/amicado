@@ -12,6 +12,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended', // must be the last one
   ],
+  "ignorePatterns:["globals.d.ts"]"
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {

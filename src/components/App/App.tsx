@@ -1,37 +1,13 @@
-import React from 'react';
-import './App.scss';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { DataProvider } from '../../dataContext/dataContext';
-import Header from '../elements/Header';
-import Home from '../elements/Home';
-import Songs from '../Pages/Songs/Songs';
-import Pictures from '../elements/Pictures';
-
-const queryClient = new QueryClient();
+import { Outlet } from "react-router-dom";
+import "./App.scss";
+import Header from "../elements/Header";
 
 function App() {
-  const [menuChoice, setMenuChoice] = React.useState('pageHome');
-  const renderContent = () => {
-    if (menuChoice === 'pageHome') {
-      return <Home />;
-    }
-    if (menuChoice === 'pageSongs') {
-      return <Songs />;
-    }
-    if (menuChoice === 'pagePictures') {
-      return <Pictures />;
-    }
-    return 'Erreur';
-  };
   return (
-    <QueryClientProvider client={queryClient}>
-      <DataProvider>
-        <div className="App">
-          <Header SetMenuChoice={setMenuChoice} />
-          {renderContent()}
-        </div>
-      </DataProvider>
-    </QueryClientProvider>
+    <div className="App">
+      <Header />
+      <Outlet />
+    </div>
   );
 }
 

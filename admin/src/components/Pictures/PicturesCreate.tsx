@@ -1,24 +1,25 @@
-import { useEffect, useState } from "react";
+import { Cloudinary } from "@cloudinary/url-gen";
+import { useState } from "react";
 import {
-  Edit,
-  EditProps,
+  Create,
+  CreateProps,
   ReferenceInput,
   required,
   SelectInput,
   SimpleForm,
   TextInput,
   useNotify,
-  ImageField,
-  useEditContext,
 } from "react-admin";
 
-export const SongEdit = (props: EditProps) => {
+export const PicturesCreate = (props: CreateProps) => {
   const [imageURL, setImageURL] = useState<string | null>(null);
+  const cld = new Cloudinary({
+    cloud: {
+      cloudName: "deihndpsd",
+    },
+  });
 
   const notify = useNotify(); // Hook pour afficher des notifications
-
-  const { record, isPending, setValue } = useEditContext();
-  if (isPending) return null;
 
   const handleImageUpload = async (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -50,34 +51,19 @@ export const SongEdit = (props: EditProps) => {
     }
   };
 
-  useEffect(() => {
-    if (imageURL) {
-      // Mettre à jour la valeur du champ image avec l'URL téléchargée
-      const imageInputElement = document.querySelector<HTMLInputElement>(
-        "input[name='image']",
-      );
-      if (imageInputElement) {
-        imageInputElement.value = imageURL;
-      }
-    }
-  }, [imageURL]);
-
   return (
-    <Edit {...props}>
+    <Create {...props}>
       <SimpleForm>
-        <TextInput source="title" label="Titre" />
-        <TextInput source="author" label="Auteur" />
+        <TextInput source="title" label="Titre" validate={[required()]} />
+
         {/* Champ personnalisé de téléchargement d'image */}
-
-        <ImageField source="image" title="title" />
-
         <input type="file" accept="image/*" onChange={handleImageUpload} />
 
         {/* Champ image qui stocke l'URL */}
         <TextInput
-          source="image"
+          source="url"
           label="Image URL"
-          defaultValue={record.image}
+          defaultValue={imageURL}
           disabled
         />
 
@@ -89,10 +75,11 @@ export const SongEdit = (props: EditProps) => {
             style={{ width: 200, height: "auto" }}
           />
         )}
-        <ReferenceInput source="years_id" reference="years" label="Année">
-          <SelectInput optionText="year" validate={[required()]} />
+
+        <ReferenceInput source="event_id" reference="events" label="Evenement">
+          <SelectInput optionText="event" validate={[required()]} />
         </ReferenceInput>
       </SimpleForm>
-    </Edit>
+    </Create>
   );
 };

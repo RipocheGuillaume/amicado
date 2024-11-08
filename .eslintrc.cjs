@@ -5,61 +5,60 @@ module.exports = {
     es2021: true,
   },
   extends: [
-    'airbnb',
-    'airbnb-typescript',
-    'airbnb/hooks',
-    'plugin:react/recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended', // must be the last one
+    "airbnb",
+    "airbnb-typescript",
+    "airbnb/hooks",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended", // must be the last one
   ],
-  "ignorePatterns:["globals.d.ts"]"
-  parser: '@typescript-eslint/parser',
+  parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: './tsconfig.json',
+    ecmaVersion: "latest",
+    sourceType: "module",
+    project: "./tsconfig.json",
   },
   overrides: [
     {
-      files: ['src/**/store/**/*.ts'],
-      rules: { 'no-param-reassign': ['error', { props: false }] },
+      files: ["src/**/store/**/*.ts"],
+      rules: { "no-param-reassign": ["error", { props: false }] },
     },
   ],
-  plugins: ['react-refresh', '@typescript-eslint', 'prettier'],
+  plugins: ["react-refresh", "@typescript-eslint", "prettier"],
   rules: {
-    'react/react-in-jsx-scope': 0,
-    'react/jsx-filename-extension': [
+    "react/react-in-jsx-scope": 0,
+    "react/jsx-filename-extension": [
       2,
-      { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
+      { extensions: [".js", ".jsx", ".ts", ".tsx"] },
     ],
-    'import/extensions': [
-      'error',
-      'ignorePackages',
+    "import/extensions": [
+      "error",
+      "ignorePackages",
       {
-        js: 'never',
-        jsx: 'never',
-        ts: 'never',
-        tsx: 'never',
+        js: "never",
+        jsx: "never",
+        ts: "never",
+        tsx: "never",
       },
     ],
-    'react/jsx-props-no-spreading': 0,
-    'jsx-a11y/label-has-associated-control': [2, { assert: 'either' }],
-    'linebreak-style': 0,
-    'no-restricted-imports': 0,
-    '@typescript-eslint/no-restricted-imports': [
-      'warn',
+    "react/jsx-props-no-spreading": 0,
+    "jsx-a11y/label-has-associated-control": [2, { assert: "either" }],
+    "linebreak-style": 0,
+    "no-restricted-imports": 0,
+    "@typescript-eslint/no-restricted-imports": [
+      "warn",
       {
-        name: 'react-redux',
-        importNames: ['useSelector', 'useDispatch'],
+        name: "react-redux",
+        importNames: ["useSelector", "useDispatch"],
         message:
-          'Use typed hooks `useAppDispatch` and `useAppSelector` instead.',
+          "Use typed hooks `useAppDispatch` and `useAppSelector` instead.",
       },
     ],
-    'react-refresh/only-export-components': [
-      'warn',
+    "react-refresh/only-export-components": [
+      "warn",
       { allowConstantExport: true },
     ],
   },

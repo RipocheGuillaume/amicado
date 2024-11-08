@@ -23,6 +23,8 @@ interface PicturesType {
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 function Pictures() {
+  const apiBaseUrl = import.meta.env.VITE_APP_URL;
+
   const [responseChoiceEvent, setResponseChoiceEvent] = useState<number | null>(
     null
   );
@@ -31,7 +33,7 @@ function Pictures() {
     data: eventsData,
     isLoading: isEventsLoading,
     error: eventsError,
-  } = useSWR<EventsType[]>("http://localhost:3000/events", fetcher);
+  } = useSWR<EventsType[]>(`${apiBaseUrl}events`, fetcher);
 
   const {
     data: selectedEvent,
@@ -39,7 +41,7 @@ function Pictures() {
     error: picturesError,
   } = useSWR<EventsType>(
     responseChoiceEvent !== null
-      ? `http://localhost:3000/events/${responseChoiceEvent}`
+      ? `${apiBaseUrl}events/${responseChoiceEvent}`
       : null,
     fetcher
   );

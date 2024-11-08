@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import useSWR from "swr";
 import MenuSongs from "./elements/MenuSongs";
@@ -26,6 +26,8 @@ interface YearsType {
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 function Songs() {
+  const apiBaseUrl = import.meta.env.VITE_APP_URL;
+  console.log(`mon .env ${apiBaseUrl}`);
   const [responseChoiceYear, setResponseChoiceYear] = useState<number>(-1);
   const [responseChoiceSong, setResponseChoiceSong] = useState<number>(-1);
   const [initChoice, setInitChoice] = useState<boolean>(false);
@@ -34,7 +36,7 @@ function Songs() {
     data: yearsData,
     isLoading: isYearsLoading,
     error: yearsError,
-  } = useSWR("http://localhost:3000/years", fetcher);
+  } = useSWR(`${apiBaseUrl}years`, fetcher);
 
   const {
     data: songsData,
@@ -42,7 +44,7 @@ function Songs() {
     error: songsError,
   } = useSWR<SongType[]>(
     responseChoiceYear !== -1
-      ? `http://localhost:3000/song/years/${responseChoiceYear}`
+      ? `${apiBaseUrl}song/years/${responseChoiceYear}`
       : null,
     fetcher
   );
@@ -53,7 +55,7 @@ function Songs() {
     error: voiceError,
   } = useSWR<VoiceType[]>(
     responseChoiceSong !== -1
-      ? `http://localhost:3000/voice/song/${responseChoiceSong}`
+      ? `${apiBaseUrl}voice/song/${responseChoiceSong}`
       : null,
     fetcher
   );

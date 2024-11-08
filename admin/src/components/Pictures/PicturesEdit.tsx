@@ -1,25 +1,19 @@
-import { Cloudinary } from "@cloudinary/url-gen";
 import { useState } from "react";
 import {
-  Create,
-  CreateProps,
+  Edit,
+  EditProps,
   ReferenceInput,
   required,
   SelectInput,
   SimpleForm,
   TextInput,
   useNotify,
+  ImageField,
 } from "react-admin";
 
-export const PicturesCreate = (props: CreateProps) => {
+export const PicturesEdit = (props: EditProps) => {
   const [imageURL, setImageURL] = useState<string | null>(null);
-  const cld = new Cloudinary({
-    cloud: {
-      cloudName: "deihndpsd",
-    },
-  });
-
-  const notify = useNotify(); // Hook pour afficher des notifications
+  const notify = useNotify();
 
   const handleImageUpload = async (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -29,7 +23,7 @@ export const PicturesCreate = (props: CreateProps) => {
 
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("upload_preset", "mr31295"); // Remplacez par le nom correct de votre preset
+    formData.append("upload_preset", "mr31295");
 
     try {
       const response = await fetch(
@@ -42,9 +36,7 @@ export const PicturesCreate = (props: CreateProps) => {
       const data = await response.json();
       const uploadedImageUrl = data.secure_url;
 
-      setImageURL(uploadedImageUrl); // Mise à jour pour l'aperçu et champ image
-
-      // Notification de succès
+      setImageURL(uploadedImageUrl);
       notify("Image téléchargée avec succès !", { type: "success" });
     } catch (error) {
       notify("Erreur lors du téléchargement de l'image", { type: "warning" });
@@ -52,26 +44,22 @@ export const PicturesCreate = (props: CreateProps) => {
   };
 
   return (
-    <Create {...props} redirect={"/pictures"}>
+    <Edit {...props} redirect="list">
       <SimpleForm>
-        <TextInput source="title" label="Titre" validate={[required()]} />
-
-        {/* Champ personnalisé de téléchargement d'image */}
+        <TextInput source="title" label="Titre" />
+        <ImageField source="url" title="Photo" />
         <input type="file" accept="image/*" onChange={handleImageUpload} />
 
-        {/* Champ image qui stocke l'URL */}
         <TextInput
           source="url"
-          label="Image URL"
+          label="Lien de la photo"
           defaultValue={imageURL}
-          disabled
         />
 
-        {/* Prévisualisation de l'image si l'URL est définie */}
         {imageURL && (
           <img
             src={imageURL}
-            alt="Image Preview"
+            alt="Prévisualisation de la photo"
             style={{ width: 200, height: "auto" }}
           />
         )}
@@ -80,6 +68,6 @@ export const PicturesCreate = (props: CreateProps) => {
           <SelectInput optionText="event" validate={[required()]} />
         </ReferenceInput>
       </SimpleForm>
-    </Create>
+    </Edit>
   );
 };

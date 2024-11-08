@@ -1,63 +1,33 @@
 import simpleRestProvider from "ra-data-simple-rest";
+import Cookies from "js-cookie";
+import { fetchUtils } from "react-admin";
+
+interface OptionProps {
+  headers?: HeadersInit;
+  [key: string]: any; // Permet d'ajouter d'autres propriétés comme signal
+}
+
+const fetchJson = (url: string, options: OptionProps = {}) => {
+  // Récupérer le token depuis le localStorage
+  const token = localStorage.getItem("token") || Cookies.get("token");
+  options.headers =
+    options.headers || new Headers({ Accept: "application/json" });
+
+  if (token) {
+    if (options.headers instanceof Headers) {
+      options.headers.set("Authorization", `Bearer ${token}`);
+    } else {
+      options.headers = {
+        ...options.headers,
+        Authorization: `Bearer ${token}`,
+      };
+    }
+  }
+
+  return fetchUtils.fetchJson(url, options);
+};
 
 export const dataProvider = simpleRestProvider(
   import.meta.env.VITE_SIMPLE_REST_URL,
+  fetchJson,
 );
-
-// const customDataProvider = {
-//   ...dataProvider,
-
-//   // Récupère une chanson spécifique avec l'ID
-//   getOne: (resource: string, params: GetOneParams) => {
-//     if (resource === "song") {
-//       return fetch(`http://localhost:300/song/${params.id}`, {
-//         method: "GET",
-//       })
-//         .then((response) => response.json())
-//         .then((data) => ({ data }));
-//     }
-
-//     return dataProvider.getOne(resource, params);
-//   },
-
-//   // Récupère une voix spécifique basée sur l'année et l'ID de la chanson
-//   getMany: (resource: string, params: GetManyParams) => {
-//     if (resource === "voice") {
-//       const { id_years, id_song } = params.ids[0]; // Assumons que params.ids contient un objet avec id_years et id_song
-
-//       return fetch(`http://localhost:3000/voice/${id_years}/${id_song}`, {
-//         method: "GET",
-//       })
-//         .then((response) => response.json())
-//         .then((data) => ({ data: [data] }));
-//     }
-
-//     return dataProvider.getMany(resource, params);
-//   },
-
-//   // Personnalise la liste des chansons avec pagination et tri si nécessaire
-//   getList: (resource: string, params: any) => {
-//     if (resource === "song") {
-//       const { page, perPage } = params.pagination;
-//       const { field, order } = params.sort;
-
-//       const url = `http://localhost:300/song?_page=${page}&_limit=${perPage}&_sort=${field}&_order=${order}`;
-
-//       return fetch(url, {
-//         method: "GET",
-//       }).then((response) => {
-//         const total = parseInt(
-//           response.headers.get("X-Total-Count") ?? "0",
-//           10,
-//         );
-//         return response.json().then((data) => ({ data, total }));
-//       });
-//     }
-
-//     return dataProvider.getList(resource, params);
-//   },
-
-//   // Ajoutez d'autres méthodes personnalisées si nécessaire (create, update, delete, etc.)
-// };
-
-// export default customDataProvider;

@@ -49,7 +49,7 @@ export const VoiceCreate = (props: CreateProps) => {
     }
   };
   return (
-    <Create {...props}>
+    <Create {...props} redirect={"/voice"}>
       <SimpleForm>
         <TextInput source="voice" label="Voix" />
         {/* Champ personnalisé de téléchargement audio */}

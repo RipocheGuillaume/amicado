@@ -1,4 +1,5 @@
 import { AuthProvider, HttpError } from "react-admin";
+import Cookies from "js-cookie";
 
 /**
  * This authProvider is only for test purposes. Don't use it in production.
@@ -20,7 +21,14 @@ export const authProvider: AuthProvider = {
         });
       }
 
-      const user = await response.json();
+      const { user, token } = await response.json();
+      //Stocke le token dans le cookies
+      Cookies.set("token", token, {
+        expires: 1,
+        secure: true,
+        sameSite: "strict",
+      });
+
       // Stocker les informations utilisateur sans le mot de passe
       localStorage.setItem("user", JSON.stringify(user));
 
@@ -31,20 +39,32 @@ export const authProvider: AuthProvider = {
     }
   },
   logout: () => {
+    Cookies.remove("token");
     localStorage.removeItem("user");
     return Promise.resolve();
   },
-  checkError: () => Promise.resolve(),
+  checkError: (error) => {
+    const status = error.status;
+    if (status === 401 || status === 403) {
+      Cookies.remove("token");
+      localStorage.removeItem("user");
+      return Promise.reject();
+    }
+    return Promise.resolve();
+  },
   checkAuth: () =>
-    localStorage.getItem("user") ? Promise.resolve() : Promise.reject(),
+    Cookies.get("token") ? Promise.resolve() : Promise.reject(),
+  // localStorage.getItem("user") ? Promise.resolve() : Promise.reject(),
   getPermissions: () => {
     return Promise.resolve(undefined);
   },
   getIdentity: () => {
-    const persistedUser = localStorage.getItem("user");
-    const user = persistedUser ? JSON.parse(persistedUser) : null;
-
-    return Promise.resolve(user);
+    try {
+      const user = JSON.parse(localStorage.getItem("user") || "");
+      return Promise.resolve(user);
+    } catch (error) {
+      return Promise.reject(error);
+    }
   },
 };
 

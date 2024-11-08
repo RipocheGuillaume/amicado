@@ -52,7 +52,7 @@ export const SongCreate = (props: CreateProps) => {
   };
 
   return (
-    <Create {...props}>
+    <Create {...props} redirect={"/Song"}>
       <SimpleForm>
         <TextInput source="title" label="Titre" validate={[required()]} />
         <TextInput source="author" label="Auteur" validate={[required()]} />

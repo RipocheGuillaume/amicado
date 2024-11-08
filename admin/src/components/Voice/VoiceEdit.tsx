@@ -9,7 +9,7 @@ import {
 } from "react-admin";
 
 export const VoiceEdit = (props: EditProps) => (
-  <Edit {...props}>
+  <Edit {...props} redirect={"/voice"}>
     <SimpleForm>
       <TextInput source="voice" label="Voix" />
       <TextInput source="link" label="Lien" />

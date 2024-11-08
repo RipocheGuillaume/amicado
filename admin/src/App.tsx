@@ -1,22 +1,23 @@
 import { Admin, Resource } from "react-admin";
 import { Layout } from "./Layout";
 import { authProvider } from "./authProvider";
-import { YearsList } from "./components/List/Years/YearsList";
+import { YearsList } from "./components/Years/YearsList";
 import { UsersList } from "./components/Users/UsersList";
-import { YearsCreate } from "./components/List/Years/YearsCreate";
+import { YearsCreate } from "./components/Years/YearsCreate";
 import { SongList } from "./components/Song/SongList";
 import { dataProvider } from "./dataProvider";
 import { SongCreate } from "./components/Song/SongCreate";
 import { SongEdit } from "./components/Song/SongEdit";
-import { YearsEdit } from "./components/List/Years/YearsEdit";
-import { VoiceList } from "./components/List/Voice/VoiceList";
-import { VoiceCreate } from "./components/List/Voice/VoiceCreate";
-import { VoiceEdit } from "./components/List/Voice/VoiceEdit";
+import { YearsEdit } from "./components/Years/YearsEdit";
+import { VoiceList } from "./components/Voice/VoiceList";
+import { VoiceCreate } from "./components/Voice/VoiceCreate";
+import { VoiceEdit } from "./components/Voice/VoiceEdit";
 import { EventsList } from "./components/Events/EventsList";
 import { EventsCreate } from "./components/Events/EventsCreate";
 import { EventsEdit } from "./components/Events/EventsEdit";
 import { PicturesList } from "./components/Pictures/PicturesList";
 import { PicturesCreate } from "./components/Pictures/PicturesCreate";
+import { PicturesEdit } from "./components/Pictures/PicturesEdit";
 
 export const App = () => (
   <Admin
@@ -44,7 +45,12 @@ export const App = () => (
       edit={EventsEdit}
     />
 
-    <Resource name="pictures" list={PicturesList} create={PicturesCreate} />
+    <Resource
+      name="pictures"
+      list={PicturesList}
+      create={PicturesCreate}
+      edit={PicturesEdit}
+    />
 
     <Resource name="users" list={UsersList} />
   </Admin>

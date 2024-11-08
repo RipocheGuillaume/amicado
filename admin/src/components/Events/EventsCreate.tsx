@@ -1,9 +1,21 @@
-import { Create, CreateProps, SimpleForm, TextInput } from "react-admin";
+import {
+  Create,
+  CreateProps,
+  SimpleForm,
+  TextInput,
+  Toolbar,
+  SaveButton,
+} from "react-admin";
 
-export const EventsCreate = (props: CreateProps) => (
-  <Create {...props}>
-    <SimpleForm>
-      <TextInput source="event" label="Evenement" />
-    </SimpleForm>
-  </Create>
-);
+export const EventsCreate = (props: CreateProps) => {
+  return (
+    <Create {...props} redirect={"/events"}>
+      <SimpleForm>
+        <TextInput source="event" label="Événement" />
+        <Toolbar>
+          <SaveButton />
+        </Toolbar>
+      </SimpleForm>
+    </Create>
+  );
+};

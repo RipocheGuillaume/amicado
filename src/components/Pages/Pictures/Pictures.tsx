@@ -24,6 +24,7 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 function Pictures() {
   const apiBaseUrl = import.meta.env.VITE_APP_URL;
+  console.log(`mon adresse pour picture ${apiBaseUrl}`);
 
   const [responseChoiceEvent, setResponseChoiceEvent] = useState<number | null>(
     null

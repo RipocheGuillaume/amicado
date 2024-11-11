@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Box } from "@mui/material";
 import useSWR from "swr";
 import MenuSongs from "../Songs/elements/MenuSongs";
 import DisplayPictures from "./GridPictures";

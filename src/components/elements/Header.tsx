@@ -7,10 +7,6 @@ import Tooltip from "@mui/material/Tooltip";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 
-interface HeaderProps {
-  SetMenuChoice: React.Dispatch<React.SetStateAction<string>>;
-}
-
 // export default function Header({ SetMenuChoice }: HeaderProps) {
 export default function Header() {
   // const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -93,7 +89,7 @@ export default function Header() {
       </Button>
       <Tooltip title="Account settings">
         <IconButton
-          href="http://localhost:5174/"
+          href="http://admin.amicado.fr"
           size="small"
           sx={{ ml: 2 }}
           aria-haspopup="true"

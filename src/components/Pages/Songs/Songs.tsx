@@ -27,7 +27,6 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 function Songs() {
   const apiBaseUrl = import.meta.env.VITE_APP_URL;
-  console.log(`mon adresse ${apiBaseUrl}`);
   const [responseChoiceYear, setResponseChoiceYear] = useState<number>(-1);
   const [responseChoiceSong, setResponseChoiceSong] = useState<number>(-1);
   const [initChoice, setInitChoice] = useState<boolean>(false);
@@ -83,7 +82,6 @@ function Songs() {
   const selectedSong = songsForSelectedYear.find(
     (s) => s.id === responseChoiceSong
   );
-  console.log(selectedSong);
   return (
     <>
       {isYearsLoading ? (

@@ -7,10 +7,10 @@ import {
 } from "react-router-dom";
 import "./styles/index.scss";
 
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import App from "./components/App/App";
 import ErrorPage from "./components/Pages/ErrorPage";
 import Songs from "./components/Pages/Songs/Songs";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Home from "./components/Pages/Home/Home";
 import Pictures from "./components/Pages/Pictures/Pictures";
 

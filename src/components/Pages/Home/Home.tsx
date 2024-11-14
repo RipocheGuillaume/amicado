@@ -1,11 +1,9 @@
 import { Box, Button, CardMedia } from "@mui/material";
-import styles from "./home.css";
 import choraleBanniere from "/choraleBanniere.png";
 import vignette_concert from "/vignette_concert.png";
 import vignette_group from "/vignette_group.png";
 import vignette_partition from "/vignette_partition.png";
 import vignette_piano from "/vignette_piano.png";
-import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
 
 function Home() {
@@ -61,7 +59,7 @@ function Home() {
             sx={{
               width: "100%",
               height: 300,
-              backgroundImage: `url(${vignette_concert})`,
+              backgroundImage: `url(${vignette_group})`,
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
               backgroundSize: "cover",

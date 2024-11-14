@@ -53,7 +53,7 @@ export default function Header() {
           component={Link}
           to="/"
         >
-          Acceuil
+          Accueil
         </Button>
         <Button
           sx={{ minWidth: 100, color: "white", fontWeight: "bold" }}

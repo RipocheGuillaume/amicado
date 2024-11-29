@@ -1,9 +1,9 @@
+import choraleBanniere from "@/choraleBanniere.png";
+import vignette_concert from "@/vignette_concert.png";
+import vignette_group from "@/vignette_group.png";
+import vignette_partition from "@/vignette_partition.png";
+import vignette_piano from "@/vignette_piano.png";
 import { Box, Button, CardMedia } from "@mui/material";
-import choraleBanniere from "/choraleBanniere.png";
-import vignette_concert from "/vignette_concert.png";
-import vignette_group from "/vignette_group.png";
-import vignette_partition from "/vignette_partition.png";
-import vignette_piano from "/vignette_piano.png";
 import { Link } from "react-router-dom";
 
 function Home() {

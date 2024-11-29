@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { Box, ImageList } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
-import { ImageList } from "@mui/material";
+import { useState } from "react";
 import "./GridPicture.css";
 
 interface DisplayPicturesProps {
@@ -13,12 +13,11 @@ interface DisplayPicturesProps {
 
 function GridPictures({ picturesData }: DisplayPicturesProps) {
   const [selectedId, setSelectedId] = useState<number | null>(null);
-  console.log(picturesData);
   const selectedItem = picturesData.find((item) => item.id === selectedId);
 
   return (
     <>
-      <ImageList variant="masonry" cols={8} gap={8} sx={{ height: "100%" }}>
+      <ImageList variant="masonry" cols={4} gap={8} sx={{ height: "100%" }}>
         {picturesData.map((item) => (
           <motion.div
             key={item.id}
@@ -27,8 +26,9 @@ function GridPictures({ picturesData }: DisplayPicturesProps) {
           >
             <img
               src={`${item.url}?w=248&fit=crop&auto=format`}
-              alt={`photo de ${item.title}`}
+              alt={`trombinoscope en petit de ${item.title}`}
             />
+            <Box>{item.title}</Box>
           </motion.div>
         ))}
       </ImageList>
@@ -38,9 +38,10 @@ function GridPictures({ picturesData }: DisplayPicturesProps) {
             <motion.div className="modal">
               <img
                 src={selectedItem.url}
-                alt={`photo de ${selectedItem.title}`}
+                alt={`trombinoscope en grand de ${selectedItem.title}`}
                 className="image"
               />
+              <Box>{selectedItem.title}</Box>
 
               <motion.button
                 onClick={() => setSelectedId(null)}
